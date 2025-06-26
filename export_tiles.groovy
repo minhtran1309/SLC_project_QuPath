@@ -7,11 +7,11 @@ def imageData = getCurrentImageData()
 
 // Define output path (here, relative to project)
 def name = GeneralTools.getNameWithoutExtension(imageData.getServer().getMetadata().getName())
-def pathOutput = buildFilePath('/home/minhtran/Projects/SLC_project_QuPath/', 'K6867_tiles', name)
+def pathOutput = buildFilePath('/home/minhtran/Projects/SLC_project_QuPath/', 'K9191_tiles_annotated')
 mkdirs(pathOutput)
 
 // Define output resolution in calibrated units (e.g. µm if available)
-double requestedPixelSize = 1.0
+double requestedPixelSize = 0.6
 
 // Convert output resolution to a downsample factor
 double pixelSize = imageData.getServer().getPixelCalibration().getAveragedPixelSize()
@@ -41,10 +41,10 @@ def labelServer = new LabeledImageServer.Builder(imageData)
 new TileExporter(imageData)
     .downsample(downsample)     // Define export resolution
     .imageExtension('_ver2.png')     // Define file extension for original pixels (often .tif, .jpg, '.png' or '.ome.tif')
-    .tileSize(512)              // Define size of each tile, in pixels
+    .tileSize(224)              // Define size of each tile, in pixels
     .labeledServer(labelServer) // Define the labeled image server to use (i.e. the one we just built)
-    .annotatedTilesOnly(false)  // If true, only export tiles if there is a (labeled) annotation present
-    .overlap(64)                // Define overlap, in pixel units at the export resolution
+    .annotatedTilesOnly(true)  // If true, only export tiles if there is a (labeled) annotation present
+    .overlap(0)                // Define overlap, in pixel units at the export resolution
     .writeTiles(pathOutput)     // Write tiles to the specified directory
 
 

@@ -74,38 +74,38 @@ def plane = ImagePlane.getPlane(z, t)
 print(image_width)
 print(image_height)
 
-//ArrayList<RectangleROI> added_annotations =  add_annotation_boxes(image_width, image_height, plane, 0, 0, 0.125)
-//print(added_annotations)
-//print('Added the tiles')
-//for (annot in added_annotations) {
-//  print(annot)
-//  print(annot.getROI())
-//  def annot_box_fn = name_the_annot(annot.getROI())
-//  print(annot_box_fn)
-////  removeObject(annot, false) 
-//  
-// }
-existing_annotation = getAnnotationObjects()
-for (annot in existing_annotation) {
-    def name = annot.getName() // Get the name
-//    print(name)
-//    print(annot.getClass())
-    if (name  != null) {
-//        print(name)
-        if (name=='Tissue_area') {
-//            print('oh yea')
-            annot.setClassification('Tissue')
-        } else {
-//            continue
-            annot.setClassification('Cell')
-        }
-    }
-    else {
-        println("Value is not a Sam.")
-        annot.setName('Manual_annotation')
-
-    }
-}
+ArrayList<RectangleROI> added_annotations =  add_annotation_boxes(image_width, image_height, plane, 0, 0, 0.25)
+print(added_annotations)
+print('Added the tiles')
+for (annot in added_annotations) {
+  print(annot)
+  print(annot.getROI())
+  def annot_box_fn = name_the_annot(annot.getROI())
+  print(annot_box_fn)
+//  removeObject(annot, false) 
+  
+ }
+//existing_annotation = getAnnotationObjects()
+//for (annot in existing_annotation) {
+//    def name = annot.getName() // Get the name
+////    print(name)
+////    print(annot.getClass())
+//    if (name  != null) {
+////        print(name)
+//        if (name=='Tissue_area') {
+////            print('oh yea')
+//            annot.setClassification('Tissue')
+//        } else {
+////            continue
+//            annot.setClassification('Cell')
+//        }
+//    }
+//    else {
+//        println("Value is not a Sam.")
+//        annot.setName('Manual_annotation')
+//
+//    }
+//}
 
 //print('Removed the tiles')
 
